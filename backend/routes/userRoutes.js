@@ -11,7 +11,9 @@ router.post('/new', async (req, res) => {
     const userData = response.data;
 
     const newUser = new User({
-      userId: userData.id
+      userId: userData.id,
+      userName: userData.first_name + ' ' + userData.last_name,
+      avatar: userData.avatar
     });
 
     await newUser.save();
@@ -44,6 +46,18 @@ router.get('/report', async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching report', error });
+  }
+});
+
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find();
+
+    res.status(200).json({
+      users
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching all users data', error });
   }
 });
 

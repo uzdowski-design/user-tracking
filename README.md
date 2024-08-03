@@ -30,6 +30,4 @@ React + Typescript + Vite
 
 Encapsulated with Docker and Docker-Compose
 
-`docker-compose build` - build all images
-
-`docker-compose up` - run all containers
+`docker compose up --build` - build and run all containers

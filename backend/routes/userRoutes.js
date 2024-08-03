@@ -51,7 +51,7 @@ router.get('/report', async (req, res) => {
 
 router.get('/users', async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().sort({ accessedAt: -1 });
 
     res.status(200).json({
       users

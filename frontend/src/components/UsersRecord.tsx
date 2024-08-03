@@ -22,12 +22,11 @@ type User = {
 export function UsersRecord({ users }: { users: User[] }) {
   return (
     <Table>
-      <TableCaption>A list of recorder user interactions.</TableCaption>
+      <TableCaption>A list of recorded user interactions.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="">User ID</TableHead>
-          <TableHead className="">Avatar</TableHead>
-          <TableHead>User Name</TableHead>
+          <TableHead className="">User</TableHead>
           <TableHead>Scrolled</TableHead>
           <TableHead className="">Date</TableHead>
         </TableRow>
@@ -37,14 +36,14 @@ export function UsersRecord({ users }: { users: User[] }) {
           users.map((user) => (
             <TableRow key={user.userId}>
               <TableCell className="">{user.userId}</TableCell>
-              <TableCell className="">
+              <TableCell className="flex flex-row items-center gap-4">
                 <UserAvatar
                   src={user.avatar}
                   alt="User Avatar"
                   username={user.userName}
                 />
+                {user.userName}
               </TableCell>
-              <TableCell>{user.userName}</TableCell>
               <TableCell
                 className={`${
                   user.scrolledToImage ? 'text-green-500' : 'text-red-500'
@@ -64,8 +63,12 @@ export function UsersRecord({ users }: { users: User[] }) {
       </TableBody>
       <TableFooter>
         <TableRow className="font-semibold">
-          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell>Total</TableCell>
           <TableCell>{users.length}</TableCell>
+          <TableCell>Scrolled To Image</TableCell>
+          <TableCell colSpan={3}>
+            {users.filter((user) => user.scrolledToImage === true).length}
+          </TableCell>
         </TableRow>
       </TableFooter>
     </Table>

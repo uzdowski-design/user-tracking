@@ -4,6 +4,8 @@ App to mock user engagement testing.
 After landing on homepage user's data is generated (fake API used for mock-up) and stored in database. Then after scrolling deep enough this information about user is also stored in database.  
 Report with engagement summary and users engagement details is displayed at /report page.
 
+![User Tracking](./frontend/public/user-tracking.png)
+
 ## Backend
 
 Node.js & Express.js

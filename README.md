@@ -10,13 +10,13 @@ Node.js & Express.js
 
 ## API
 
-**POST** `/api/users/new` - create new user with fake data fetched from external API (https://random-data-api.com/api/v2/users)[https://random-data-api.com/api/v2/users]
+**POST** `/api/users/new` - create new user with fake data fetched from external API (https://random-data-api.com/api/v2/users)
 
 **POST** `/api/users/scroll` - update user's scroll property after scrolling deep enough into the page
 
 **GGET** `/api/users/report` - get report summary
 
-**GGET** `/api/users/users` - get detailed information about users engagemetn
+**GGET** `/api/users/users` - get detailed information about users engagement
 
 ## Database
 
@@ -31,4 +31,5 @@ React + Typescript + Vite
 Encapsulated with Docker and Docker-Compose
 
 `docker-compose build` - build all images
+
 `docker-compose up` - run all containers

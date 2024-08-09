@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 5000
+RUN npm install -g typescript
+
+EXPOSE 4000
 
 CMD ["npm", "start"]

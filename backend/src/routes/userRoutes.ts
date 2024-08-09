@@ -1,9 +1,11 @@
-const express = require('express');
-const axios = require('axios');
-const User = require('../models/user');
+import express, { Request, Response } from 'express';
+import axios from 'axios';
+import User, { IUser } from '../models/user';
+
 const router = express.Router();
 
-router.post('/new', async (req, res) => {
+// Route to create a new user
+router.post('/new', async (req: Request, res: Response) => {
   try {
     const response = await axios.get(
       'https://random-data-api.com/api/v2/users'
@@ -12,7 +14,7 @@ router.post('/new', async (req, res) => {
 
     const newUser = new User({
       userId: userData.id,
-      userName: userData.first_name + ' ' + userData.last_name,
+      userName: `${userData.first_name} ${userData.last_name}`,
       avatar: userData.avatar
     });
 
@@ -23,7 +25,8 @@ router.post('/new', async (req, res) => {
   }
 });
 
-router.post('/scroll', async (req, res) => {
+// Route to update user scroll event
+router.post('/scroll', async (req: Request, res: Response) => {
   try {
     const { userId } = req.body;
     await User.updateOne({ userId }, { scrolledToImage: true });
@@ -33,9 +36,10 @@ router.post('/scroll', async (req, res) => {
   }
 });
 
-router.get('/report', async (req, res) => {
+// Route to get the report
+router.get('/report', async (req: Request, res: Response) => {
   try {
-    const users = await User.find();
+    const users: IUser[] = await User.find();
     const totalUsers = users.length;
     const scrolledUsers = users.filter((user) => user.scrolledToImage).length;
     const scrollPercentage = (scrolledUsers / totalUsers) * 100;
@@ -49,9 +53,10 @@ router.get('/report', async (req, res) => {
   }
 });
 
-router.get('/users', async (req, res) => {
+// Route to get all users sorted by accessedAt
+router.get('/users', async (req: Request, res: Response) => {
   try {
-    const users = await User.find().sort({ accessedAt: -1 });
+    const users: IUser[] = await User.find().sort({ accessedAt: -1 });
 
     res.status(200).json({
       users
@@ -61,4 +66,4 @@ router.get('/users', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

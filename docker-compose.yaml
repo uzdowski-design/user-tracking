@@ -17,7 +17,7 @@ services:
     environment:
       - MONGODB_URI=mongodb://mongo:27017/users
     ports:
-      - '5000:5000'
+      - '4000:4000'
     depends_on:
       - mongo
 

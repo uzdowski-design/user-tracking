@@ -9,7 +9,7 @@ export default defineConfig({
     host: true,
     port: 4173,
     proxy: {
-      '/api': 'http://backend:5000'
+      '/api': 'http://backend:4000'
     }
   },
   resolve: {
